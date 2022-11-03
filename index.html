@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkers</title>
+
+    <meta name="description" content="Play Checkers Online with your friends!">
+    <meta name="keywords" content="checkers, online, draughts, multiplayer">
+    <meta name="author" content="Rafael Grillo">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta property="og:title" content="Checkers" />
+    <meta property="og:description" content="Play Checkers Online with your friends!" />
+    <meta property="og:url" content="http://checkers.rgrillo.com" />
+    <meta property="og:image" content="http://checkers.rgrillo.com/ss.png" />
+
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.min.css"/>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+
+    <script src="/js/application.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+</head>
+<body onload="initGame()">
+    <a href="https://github.com/grillorafael/Checkers" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <div class="game-container">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#game" data-toggle="tab">Game</a></li>
+            <li><a href="#rules" data-toggle="tab">Rules</a></li>
+            <li><a href="#about" data-toggle="tab">About</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="game" class="tab-pane active">
+                <div id="checkersTable"></div>
+                <div id="chat" class="hidden">
+                    <div class="row">
+                        <ul id="chatBox"></ul>
+                    </div>
+                    <form id="sendMessage">
+                        <div class="row">
+                            <textarea id="chatMessage" rows="2" placeholder="Please, type a message to your friend!"></textarea>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-block btn-primary" href="">Send</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="turnShower" data-color="0"> CURRENT TURN </div>
+                <a id="hint" class="btn btn-block btn-warning btn-large " data-toggle="button">I NEED A HINT!</a>
+            </div>
+            <div class="tab-pane" id="rules">
+                TBA
+            </div>
+            <div class="tab-pane" id="about">
+                <strong>Developers:</strong>
+                <ul>
+                    <li><a href="https://www.facebook.com/rafaelgrilloabreu" target="_blank">Rafael Grillo</a></li>
+                    <li><a href="https://www.facebook.com/eduardo.jandre" target="_blank">Eduardo Jandre</a></li>
+                </ul>
+                <strong>Status:</strong> Almost finished
+                <br/>
+                <strong>Motivation:</strong> A Project from an IA Class about Minimax Algorithm
+                <br/>
+                <strong>Source Code:</strong>
+                <ul>
+                    <li><a href="js/minimax.js" target="_blank">Minimax Script File</a></li>
+                    <li><a href="js/checkers.js" target="_blank">Checkers Script File</a></li>
+                    <li><a href="js/main.js" target="_blank">Main Script File</a></li>
+                    <li><a href="js/constants.js" target="_blank">Constants Script File</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameConfigModal" class="modal hide fade" data-backdrop="static">
+        <div class="modal-header">
+            <h3>Please select the Game Mode</h3>
+        </div>
+        <div id="gameConfigModalBody" class="modal-body">
+            <div id="gameMode">
+                <a href="javascript:againstRandom()" class="btn btn-danger btn-large btn-block">Against Random</a>
+                <a href="javascript:enableIa(true)" class="btn btn-warning btn-large btn-block">Against IA</a>
+                <a href="javascript:enableIa(false)" class="btn btn-primary btn-large btn-block">2 Players</a>
+                <!--<a href="javascript:enableIa('ia')" class="btn btn-danger btn-large btn-block">IA vs IA</a>-->
+            </div>
+            <div id="waiting" class="hidden text-center">
+                <h2><i class="icon-refresh icon-spin"></i> Waiting for other player</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="disconnectedModal" class="modal hide fade" data-backdrop="static">
+        <div class="modal-header">
+            <h3>The other player has disconnected</h3>
+        </div>
+        <div class="modal-body">
+            <a href="javascript:location.reload()" class="btn btn-warning btn-large btn-block">Restart</a>
+        </div>
+    </div>
+
+    <div id="winnerModal" class="modal hide fade" data-backdrop="static">
+        <div class="modal-header">
+            <h3>The Game is Over!</h3>
+        </div>
+        <div class="modal-body">
+            <p>Congratulations <span id="winnerName"></span></p>
+            <a href="javascript:location.reload();" class="btn btn-success btn-large btn-block">Restart</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-12680190-7']);
+        _gaq.push(['_setDomainName', 'rgrillo.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>
